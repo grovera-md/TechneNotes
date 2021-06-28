@@ -1,0 +1,14 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Exec=python3 @CINSTPATH@/technenotes.py
+Path=@CINSTPATH@
+Icon=@CINSTPATH@/technenotes.png
+Type=Application
+Terminal=false
+Comment=TechneNotes
+Name=TechneNotes
+GenericName=technenotes
+Categories=Development;IDE;

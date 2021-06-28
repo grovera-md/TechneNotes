@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+
+.video-thumb-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.video-thumb-overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color:rgba(0,0,0,0.3);
+    color: #FFF;
+    
+    display: -webkit-box; 
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;    
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.video-thumb-overlay svg {
+    width: 28%;
+    height: 28%;
+}
+
+.video-thumb-overlay:hover {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.video-thumb-overlay:hover svg .level-1 path {
+    fill: red;
+}
+

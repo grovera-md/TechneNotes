@@ -1,0 +1,98 @@
+body {
+	background-color: #2b2b2b;
+}
+
+html {
+    font-family: Lato, sans-serif;
+	color: white;
+	font-size: 11px;
+}
+
+h1 {
+	font-size: 3.1rem;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+h1:first-child {
+	margin-top: 20px;
+}
+
+h2 {
+	font-size: 2.4rem;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+h3 {
+	font-size: 2.1rem;
+	margin-top: 20px;
+	margin-bottom: 7px;
+}
+
+h4 {
+	font-size: 1.8rem;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+h5 {
+	font-size: 1.7rem;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+h6 {
+	font-size: 1.6rem;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.container {
+	font-size: 1.6rem;
+}
+
+p, li {
+	font-size: 1.55rem;
+}
+
+p {
+	margin: 12px 0px;
+}
+
+p > code, li > code {
+	font-family: "Liberation Mono", monospace;
+	font-size: 1.5rem;
+}
+
+pre[class*="language-"] > code[class*="language-"] {
+	font-size: 1.55rem;
+}
+
+a {
+    color: #00abff;
+}
+
+a:link {
+    color: #00abff;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #00abff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00abff;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #00abff;
+    text-decoration: underline;
+}
+
+p > code, li > code {
+	color: #e9256c;
+}

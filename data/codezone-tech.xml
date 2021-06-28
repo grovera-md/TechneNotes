@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<style-scheme id="codezone-tech" _name="CodeZoneTech" version="1.0">
+  <author>A Coder</author>
+  <_description>The CodeZoneTech Theme</_description>
+  
+  <!-- Monokai-extended derived styles -->
+  <style name="c:preprocessor" foreground="#be84ff"/>
+  <style name="css:at-rules" foreground="#f92672"/>
+  <style name="css:color" foreground="#be84ff"/>
+  <style name="css:keyword" foreground="#66d9ef"/>
+  <style name="def:base-n-integer" foreground="#be84ff"/>
+  <style name="def:boolean" foreground="#be84ff"/>
+  <style name="def:builtin" foreground="#be84ff"/>
+  <style name="def:character" foreground="#be84ff"/>
+  <style name="def:complex" foreground="#be84ff"/>
+  <style name="def:decimal" foreground="#be84ff"/>
+  <style name="def:doc-comment" foreground="#75715e"/>
+  <style name="def:doc-comment-element" foreground="#75715e"/>
+  <style name="def:error" foreground="#f8f8f0" background="#f92672"/>
+  <style name="def:floating-point" foreground="#be84ff"/>
+  <style name="def:function" foreground="#a6e22e"/>
+  <style name="def:identifier" foreground="#ffffff"/>
+  <style name="def:keyword" foreground="#f92672"/>
+  <style name="def:note" foreground="#75715e"/>
+  <style name="def:number" foreground="#be84ff"/>
+  <style name="def:operator" foreground="#f92672"/>
+  <style name="def:preprocessor" foreground="#66d9ef"/>
+  <style name="def:reserved" foreground="#f92672"/>
+  <style name="def:shebang" foreground="#75715e"/>
+  <style name="def:special-char" foreground="#66d9ef"/>
+  <style name="def:special-constant" foreground="#be84ff"/>
+  <style name="def:statement" foreground="#f92672"/>
+  <style name="def:string" foreground="#e6db74"/>
+  <style name="def:type" foreground="#66d9ef" italic="true"/>
+  <style name="diff:added-line" foreground="#a6e22e"/>
+  <style name="diff:changed-line" foreground="#e6db74"/>
+  <style name="diff:location" foreground="#75715e"/>
+  <style name="diff:removed-line" foreground="#f92672"/>
+  <style name="draw-spaces" foreground="#3b3a32"/>
+  <style name="html:dtd" foreground="#e6db74"/>
+  <style name="html:tag" foreground="#f92672"/>
+  <style name="js:function" foreground="#66d9ef"/>
+  <style name="perl:builtin" foreground="#a6e22e"/>
+  <style name="perl:include-statement" foreground="#f92672"/>
+  <style name="perl:special-variable" foreground="#be84ff"/>
+  <style name="perl:variable" foreground="#ffffff"/>
+  <style name="php:string" foreground="#e6db74"/>
+  <style name="python:builtin-constant" foreground="#f92672"/>
+  <style name="python:builtin-function" foreground="#a6e22e"/>
+  <style name="python:module-handler" foreground="#f92672"/>
+  <style name="python:special-variable" foreground="#f92672"/>
+  <style name="ruby:attribute-definition" foreground="#f92672"/>
+  <style name="ruby:builtin" foreground="#ffffff"/>
+  <style name="ruby:class-variable" foreground="#ffffff"/>
+  <style name="ruby:constant" foreground="#ffffff"/>
+  <style name="ruby:global-variable" foreground="#a6e22e"/>
+  <style name="ruby:instance-variable" foreground="#ffffff"/>
+  <style name="ruby:module-handler" foreground="#f92672"/>
+  <style name="ruby:predefined-variable" foreground="#be84ff"/>
+  <style name="ruby:regex" foreground="#f6aa11"/>
+  <style name="ruby:special-variable" foreground="#f92672"/>
+  <style name="ruby:symbol" foreground="#be84ff"/>
+  <style name="rubyonrails:attribute-definition" foreground="#f92672"/>
+  <style name="rubyonrails:block-parameter" foreground="#fd971f" italic="true"/>
+  <style name="rubyonrails:builtin" foreground="#ffffff"/>
+  <style name="rubyonrails:class-inherit" foreground="#a6e22e" underline="true" italic="true"/>
+  <style name="rubyonrails:class-name" foreground="#66d9ef"/>
+  <style name="rubyonrails:class-variable" foreground="#ffffff"/>
+  <style name="rubyonrails:complex-interpolation" foreground="#be84ff"/>
+  <style name="rubyonrails:constant" foreground="#ffffff"/>
+  <style name="rubyonrails:global-variable" foreground="#a6e22e"/>
+  <style name="rubyonrails:instance-variable" foreground="#ffffff"/>
+  <style name="rubyonrails:module-handler" foreground="#f92672"/>
+  <style name="rubyonrails:module-name" foreground="#66d9ef"/>
+  <style name="rubyonrails:predefined-variable" foreground="#be84ff"/>
+  <style name="rubyonrails:rails" foreground="#ffffff"/>
+  <style name="rubyonrails:regex" foreground="#f6aa11"/>
+  <style name="rubyonrails:simple-interpolation" foreground="#be84ff"/>
+  <style name="rubyonrails:special-variable" foreground="#f92672"/>
+  <style name="rubyonrails:symbol" foreground="#be84ff"/>
+  <style name="xml:attribute-name" foreground="#a6e22e"/>
+  <style name="xml:element-name" foreground="#f92672"/>
+  <style name="xml:entity" foreground="#c8cecc"/>
+  <style name="xml:namespace" foreground="#f92672"/>
+  <style name="xml:tag" foreground="#f92672"/>
+  <!-- End of Monokai styles -->
+
+  <!-- Global Settings -->
+  <style name="selection"         background="#8dac6f"/> <!-- #8dac6f --><!-- mint green --> <!-- #708b99 -->
+  <style name="text"              foreground="#f8f8f8" background="#2b2b2b"/> <!-- #2d2d2d  #2b2b2b -->
+  <style name="cursor"            foreground="#ffffff"/>
+  <style name="current-line"      background="#393b3d"/> <!-- original #FF0000 - #132733 -->
+  <style name="line-numbers"      foreground="#c4c2c2" background="#393b3d"/> <!-- original foreground: #f8f8f8 opt1: #bbbbbb - background: #393b3d opt1: #313335 - #1b3849 -->
+
+  <!-- Bracket Matching -->
+  <style name="bracket-match" foreground="#ffef2e" background="#4C4C4C"/> <!-- bright blue #00b6ff mint green #8dac6f -->
+  <style name="bracket-mismatch" background="#4C4C4C" bold="true"/>
+  <style name="search-match" background="#f8f300" foreground="#red"/> <!-- original: #404040 -->
+  <!-- Monokai-extended: <style name="search-match"  background="#333333" bold="true" underline="true"/> -->
+  <style name="match-style" background="#f8f300" foreground="#red"/> <!-- original: #404040 -->
+  <style name="def:comment" foreground="#8c876f"/>
+  
+
+  <!-- My old styles
+  <style name="def:comment" foreground="#f8f8f8"/>
+  <style name="def:doc-comment-element" foreground="#f8f8f8" italic="true"/>
+  <style name="def:shebang" foreground="#f8f8f8">
+  <style name="def:constant" foreground="#66d9ef" italic="true"/>
+  <style name="def:special-char" foreground="#f8f8f8"/>
+  <style name="def:identifier" foreground="#e9256c"/>
+  <style name="def:statement" foreground="#a6e12e" bold="true"/>
+  <style name="def:type" foreground="#orange" italic="true"/>
+  <style name="def:error" background="#C80000" foreground="#F0EA20"/> 
+  <style name="def:note" background="#F0EA20" foreground="#C80000"/>
+  -->
+  
+  <!-- Annotations about old styles: 
+  - name="def:constant": image title
+  - name="def:identifier": code span - v1 d63384 v2 e9256c
+  - name="def:statement": list bullets
+  - name="def:type": titles c455ff - f700ff - d01ad7
+  -->
+  
+  <!-- Custom Markdown Codebits Styling -->
+  <style name="markdown-extra-tech:ipsum" foreground="#orange"/> <!-- FOREGROUND original: #f8f8f8 -->
+  <style name="markdown-extra-tech:language-code-block" italic="true" foreground="#d01ad7" />
+  <style name="markdown-extra-tech:header" foreground="#00dd2d"/>
+  <style name="markdown-extra-tech:header-id-marker" foreground="#ff0083"/>
+  <style name="markdown-extra-tech:attribute-value" foreground="#ff0083"/>
+  <style name="markdown-extra-tech:attribute-braces" foreground="#00b2ec"/>
+  <style name="markdown-extra-tech:link-brackets" foreground="#00b2ec"/>
+  <style name="markdown-extra-tech:link-text" foreground="#00b2ec"/>
+  <style name="markdown-extra-tech:link-url" foreground="#f8f8f8"/>
+  <style name="markdown-extra-tech:link-label" foreground="#fffb00"/> <!-- aqua #00ffb7 - light-yellow #fffb00 -->
+  <style name="markdown-extra-tech:link-automatic" foreground="#00b2ec"/>
+  <style name="markdown-extra-tech:image-marker" foreground="#ff5400"/>
+  <style name="markdown-extra-tech:image-brackets" foreground="#ff5400"/>
+  <style name="markdown-extra-tech:custom-attributes-braces" foreground="#00b2ec"/>
+  <style name="markdown-extra-tech:custom-attributes-gallery" foreground="#ff5400"/>
+  <style name="markdown-extra-tech:custom-attributes-video" foreground="#ce21ff"/>
+  <style name="markdown-extra-tech:custom-attributes-generic" foreground="#00b2ec"/>
+
+</style-scheme>
+

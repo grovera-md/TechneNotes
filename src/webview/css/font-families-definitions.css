@@ -1,0 +1,30 @@
+/* FONTS FAMILIES
+
+@font-face {
+  font-family: AvenirLight;
+  src: url(fonts/avenirLight/avenirltstd-light.otf);
+}
+
+@font-face {
+  font-family: Lato;
+  src: url(fonts/lato/Lato-Regular.ttf);
+}
+
+*/
+
+/* Not used (for now)
+@font-face {
+  font-family: LatoLight;
+  src: url(fonts/lato/Lato-Light.ttf);
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url(fonts/montserrat/Montserrat-Regular.otf);
+}
+
+@font-face {
+  font-family: SourceSansPro;
+  src: url(fonts/sourceSansPro/SourceSansPro-Regular.otf);
+}
+*/

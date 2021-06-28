@@ -1,0 +1,49 @@
+body {
+	margin: 0;
+}
+
+.container {
+	width: 85%;
+	margin: 0 auto;
+}
+
+pre[class*="language-"] {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.v-center {
+	vertical-align: middle;
+}
+
+img {
+	max-width: 100%;
+}
+
+div.h-center {
+	text-align: center;
+	margin-top: 12px;
+}
+
+div.full-width img {
+	width: 100%;
+}
+
+div.full-width {
+	margin-top: 12px;
+}
+
+a.video {
+	margin-top: 12px;
+	display: inline-block;
+}
+
+div.container > img, div.container > a > img {
+	margin-top: 12px;
+}
+
+div.justified-gallery {
+	margin-top: 12px;
+}
+
+

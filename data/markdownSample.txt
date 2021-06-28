@@ -1,0 +1,219 @@
+# TechneNotes
+
+## Software guide and Markdown reference
+
+### Table of contents
+
+- [Markdown](#markdown)
+- [Links (URL, local files, internal links, links to other notes)](#links)
+- [Including other notes](#include)
+- [Code (Inline code and Fenced code blocks)](#code)
+- [Images](#images)
+- [Justified Image Gallery](#jig)
+
+### Markdown {#markdown}
+
+TechneNotes uses the Markdown language. Please refer to *John Gruber's* original [specifications](https://daringfireball.net/projects/markdown/syntax "Markdown") for details about the Markdown syntax. TechneNotes also implements a few extra features as detailed in the following sections of this document.
+
+To preview the rendered Markdown code, use the `Edit/Render` menu (or the corresponding Toolbar button), or use the `Ctrl+R` shortcut.
+
+To save a note click the `File/Save` menu (or the corresponding Toolbar button), or use the `Ctrl+S` shortcut.
+
+### Links {#links}
+
+TechneNotes is extremely flexible and allows users to link to any type of content, both locally and online; it is also possible to insert links to other notes.
+
+###### *1- Links to URL*
+
+Inline link:  [Link Text](https://www.google.it "Google")
+
+Automatic link: <http://www.google.it>
+
+Reference link: [Link Text][Link Label]
+
+[link label]: http://www.google.it "Google"
+
+###### *2- Links to Local Files*
+
+Files can be of any type (image, video, pdf... etc). They will be opened with the default system application.  
+Both absolute and relative file paths are accepted.
+
+Video file with relative path: [Video](sample_media/mountains.mp4 "Mountains")
+
+Image file with relative path: [Image](sample_media/21.jpg)
+
+###### *3- Links to another note section (Internal Links)*
+
+Internal link: [Link](#markdown "Internal link") 
+
+This link will point to the specific item with an `id` equal to `markdown`, for example  `"### Title {#markdown}"`.  
+This feature can be useful for creating the "Table of contents", with quick links to each section of the document. 
+
+###### *4- Links to other Notes*
+
+TechneNotes allows users to link to other notes. When clicking on a note-link, the corresponding note will be opened in a new tab.
+
+Note-link : [Other Note](note/5)
+
+Note: the URL section of the note-link MUST adhere to the following structure: `"note/"` + `id` of the corresponding note.
+
+### Include other notes {#include}
+
+TechneNotes allows users to include notes into one another, in order to better organize the content without repeating the same code.
+
+[Included note title](include/note/2)
+
+Note: the URL section of the include-link MUST adhere to the following structure: `"include/note/"` + `id` of the corresponding note.
+
+### Code {#code}
+
+###### *1- Inline code*
+
+Inserting `inline code` is very easy.
+
+###### *2- Fenced code blocks*
+
+TechneNotes supports many programming languages. Here are some examples:
+
+```language-html  
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Page Title</title>
+	</head>
+	<body>
+		<h1>First Heading</h1>
+		<p>First Paragraph</p>
+	</body>
+</html> 
+```
+
+```language-css
+/* CSS */
+body {
+  background-color: white;
+  color: black;
+}
+```
+
+```language-python
+# Python
+flag = True
+if flag:
+    print('Flag is True')
+else:
+    print('Flag is False')
+    
+```
+
+```language-java
+ /* JAVA */
+public class MyFirstJavaProgram {
+   public static void main(String []args) {
+      System.out.println("Hello World"); 
+   }
+}
+```
+
+### Images {#images}
+
+###### *1- Simple images*
+
+![alt text](sample_media/6-tb.jpg)
+![alt text](sample_media/7-tb.jpg)
+[![alt text](sample_media/2-tb.jpg "Title")](sample_media/2.jpg "Title")
+[![alt text](sample_media/3-tb.jpg "Title")][image_label]
+[image_label]: sample_media/3.jpg "Title"  
+
+
+###### *2- Image Positioning*
+
+TechneNotes allows for quick and easy image positioning, by adding specific attributes.  
+
+VERTICAL ALIGNMENT  
+You can vertically-align inline-images (e.g. icons) by adding the `{: .v-center}` attribute ![icon](sample_media/linux_mint_icon.png "Image Title"){: .v-center} 
+
+HORIZONTAL ALIGNMENT  
+
+Other useful attributes are:  
+- `{: .sci}`: single centered image  
+- `{: .mci}`: multiple centered images  
+- `{: .fwi}`: full-width image  
+
+![alt text](sample_media/35-tb.jpg){: .sci}
+![alt text](sample_media/28-tb.jpg){: .mci}
+![alt text](sample_media/30-tb.jpg){: .mci}
+![alt text](sample_media/44.jpg){: .fwi}
+
+IMAGES WITH LINKS  
+
+Images can also be used as links to URLs or to local files, with the following syntax: `[![alt_text](image_path)](link_path)`
+
+[![](sample_media/37-tb.jpg)](sample_media/37.jpg)
+[![](sample_media/2-tb.jpg)](sample_media/2.jpg)
+
+IMAGE GALLERY  
+
+Add the `{: .gallery}` attribute to automatically display the linked content (image or video) in a lightbox.
+
+[![](sample_media/3-tb.jpg)](sample_media/3.jpg){: .gallery}
+[![](sample_media/6-tb.jpg)](sample_media/6.jpg){: .gallery}
+
+COMBINING ATTRIBUTES  
+
+It is possible to freely combine attributes. In the following example the `{: .sci}` and `{: .gallery}` attributes were combined.
+
+[![](sample_media/25-tb.jpg)](sample_media/25.jpg){: .sci .gallery}
+
+VIDEO GALLERY  
+
+TechneNotes video gallery supports links to YouTube / Vimeo, and also HTML5 mp4 videos. 
+
+[![](sample_media/marja-kaisla-tb.jpg)](https://www.youtube.com/watch?v=V5cMZFX-w9o){: .mci .video}
+[![](sample_media/tiffany-poon-1-tb.jpg)](https://www.youtube.com/watch?v=VoSvmYlvOQ4){: .mci .video}
+[![](sample_media/tiffany-poon-2-tb.jpg)](https://www.youtube.com/watch?v=xKAgj0PAJmA){: .sci .video}
+[![](sample_media/yuval-salomon-tb.jpg)](https://www.youtube.com/watch?v=GS3Ogri26Es){: .sci .video}
+
+##### *3- Justified Image Gallery* {#jig}
+
+One of the nicest features of TechneNotes is the possibility to automatically transform a series of images-links into a justified image gallery, by simply adding the `{: jig}` attribute to any of the images/videos. 
+
+[![](sample_media/13-tb.jpg)](sample_media/13.jpg){: .jig}
+[![](sample_media/16-tb.jpg)](sample_media/16.jpg)
+[![](sample_media/marja-kaisla-tb.jpg)](https://www.youtube.com/watch?v=V5cMZFX-w9o){: .video}
+[![](sample_media/28-tb.jpg)](sample_media/28.jpg){: .jig}
+[![](sample_media/29-tb.jpg)](sample_media/29.jpg)
+[![](sample_media/30-tb.jpg)](sample_media/30.jpg)
+[![](sample_media/31-tb.jpg)](sample_media/31.jpg)
+[![](sample_media/32-tb.jpg)](sample_media/32.jpg)
+[![](sample_media/33-tb.jpg)](sample_media/33.jpg)
+[![](sample_media/34-tb.jpg)](sample_media/34.jpg)
+[![](sample_media/35-tb.jpg)](sample_media/35.jpg)
+[![](sample_media/36-tb.jpg)](sample_media/36.jpg)
+[![](sample_media/37-tb.jpg)](sample_media/37.jpg)
+[![](sample_media/10-tb.jpg)](sample_media/10.jpg)
+[![](sample_media/39-tb.jpg)](sample_media/39.jpg)
+[![](sample_media/40-tb.jpg)](sample_media/40.jpg)
+[![](sample_media/41-tb.jpg)](sample_media/41.jpg)
+
+
++++++++++ Reference for dev +++++++++
+Note-link with invalid id string: [Azalea note](note/16st)
+
+Note-link with non-existent db id: [Azalea note](note/169698)
+
+Inline link [Link Text](http://www.google.it "Google"){: target="_blank"}
+
+Inline link without target-blank [Link Text](https://www.google.it "Google")
+
+Video file full uri: [Video](file:///home/guido/Repositories/codebits/videos/sampleVideo1.mp4 "Bunny")  
+
+File with wrong path: [Video](mygreatvideos/sampleVideo1.mp4) 
+
+Video file with absolute path: [Video](/home/guido/Repositories/codebits/videos/sampleVideo1.mp4 "Bunny")  
+
+Languages to add:
+asp, bibtex, d, go, json, latex, matlab, mediawiki, perl, pascal, R, puppet, ruby, rust, scala, sh, sql, vala, xml, yaml.
+
++++++++++ End +++++++++
+

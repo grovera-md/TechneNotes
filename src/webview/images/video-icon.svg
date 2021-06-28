@@ -1,0 +1,8 @@
+<svg class="youtube-play-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+                        <g class="level-2">
+                            <rect x="8.25" y="7.5" fill="#FFFFFF" width="15.5" height="16.75"></rect>
+                        </g>
+                        <g class="level-1">
+                            <path fill="#444444" d="M30.662 5.003C26.174 4.358 21.214 4 16 4S5.826 4.358 1.338 5.003C0.478 8.369 0 12.089 0 16s0.477 7.63 1.338 10.997C5.827 27.643 10.786 28 16 28s10.174-0.357 14.662-1.003C31.521 23.631 32 19.911 32 16S31.523 8.37 30.662 5.003zM12 22V10l10 6L12 22z"></path>
+                        </g>
+                    </svg>

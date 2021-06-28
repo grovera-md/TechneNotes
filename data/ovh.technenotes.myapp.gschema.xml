@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="ovh.technenotes.myapp" path="/ovh/technenotes/">
+    <key type="s" name="code-font">
+      <default>"Sans 10"</default>
+      <summary>Code font-style</summary>
+      <description>Font-style of the markdown editor</description>
+    </key>
+    <key type="s" name="code-font-tmp">
+      <default>"Sans 10"</default>
+      <summary>Temporary code font-style</summary>
+      <description>Temporary font-style of the markdown editor</description>
+    </key>
+    <key type="b" name="webview-css-mod-flag">
+      <default>false</default>
+      <summary>Webview CSS modified flag</summary>
+      <description>Flag to indicate if webview CSS was modified.</description>
+    </key>
+    <key type="s" name="db-path">
+      <default>""</default>
+      <summary>Db file path</summary>
+      <description>Path to the db file</description>
+    </key>
+    <key type="s" name="db-path-tmp">
+      <default>""</default>
+      <summary>Temporary db file path</summary>
+      <description>Temporary path to the db file</description>
+    </key>
+    <key type="s" name="assets-folder-path">
+      <default>""</default>
+      <summary>Assets folder path</summary>
+      <description>Path to the assets folder</description>
+    </key>
+    <key type="s" name="assets-folder-path-tmp">
+      <default>""</default>
+      <summary>Temporary assets folder path</summary>
+      <description>Temporary path to the assets folder</description>
+    </key>
+  </schema>
+</schemalist>
+
