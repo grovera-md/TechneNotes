@@ -195,25 +195,3 @@ One of the nicest features of TechneNotes is the possibility to automatically tr
 [![](sample_media/39-tb.jpg)](sample_media/39.jpg)
 [![](sample_media/40-tb.jpg)](sample_media/40.jpg)
 [![](sample_media/41-tb.jpg)](sample_media/41.jpg)
-
-
-+++++++++ Reference for dev +++++++++
-Note-link with invalid id string: [Azalea note](note/16st)
-
-Note-link with non-existent db id: [Azalea note](note/169698)
-
-Inline link [Link Text](http://www.google.it "Google"){: target="_blank"}
-
-Inline link without target-blank [Link Text](https://www.google.it "Google")
-
-Video file full uri: [Video](file:///home/guido/Repositories/codebits/videos/sampleVideo1.mp4 "Bunny")  
-
-File with wrong path: [Video](mygreatvideos/sampleVideo1.mp4) 
-
-Video file with absolute path: [Video](/home/guido/Repositories/codebits/videos/sampleVideo1.mp4 "Bunny")  
-
-Languages to add:
-asp, bibtex, d, go, json, latex, matlab, mediawiki, perl, pascal, R, puppet, ruby, rust, scala, sh, sql, vala, xml, yaml.
-
-+++++++++ End +++++++++
-
