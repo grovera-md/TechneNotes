@@ -1,3 +1,7 @@
+<p align="center">
+    <img alt="logo" src="./data/sample_media/technenotes_icon.png">
+</p>
+
 #TechneNotes
 
 ### Installation instructions
