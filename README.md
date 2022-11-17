@@ -1,8 +1,9 @@
+
 <p align="center">
     <img alt="logo" src="./data/sample_media/technenotes_icon.png">
 </p>
 
-#TechneNotes
+# TechneNotes
 
 ### Installation instructions
 Note: Since TechneNotes is a newly developed project, there isn't a `.deb` package yet, so the software is currently not available through the software manager.
