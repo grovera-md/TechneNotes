@@ -17,12 +17,15 @@ import dialogCloseTab
 import dialogDeleteOpenedNote
 import dialogPreferences
 import dialogFirstSetup
+import dialogInsertMedia
 import os
 import sys
 import shutil
 from pathlib import Path
 import renderMarkdown
 import math
+import uuid
+from PIL import Image
 
 # Docs/Required_system_files
 # For the application to work properly, the following system files should be set in the installation process:
@@ -91,7 +94,7 @@ class TechneNotes(Gtk.Window):
         # self.menuItemsMain = {self.menuItemsDict["File"]["Insert new before"], self.menuItemsDict["File"]["Insert new after"], self.menuItemsDict["File"]["Insert new as child"], self.menuItemsDict["File"]["Export..."], self.menuItemsDict["File"]["Backup / Export all..."], self.menuItemsDict["File"]["Import..."], self.menuItemsDict["Edit"]["Delete"]}
         self.menuItemsMain = {self.menuItemsDict["File"]["New..."], self.menuItemsDict["Edit"]["Delete"]}
         # Temporary removed items: self.menuItemsDict["File"]["Export..."], self.menuItemsDict["File"]["Backup / Export all..."], self.menuItemsDict["File"]["Import..."],
-        self.menuItemsEditor = {self.menuItemsDict["File"]["Save"], self.menuItemsDict["Edit"]["Undo"], self.menuItemsDict["Edit"]["Redo"], self.menuItemsDict["Edit"]["Cut"], self.menuItemsDict["Edit"]["Copy"], self.menuItemsDict["Edit"]["Paste"], self.menuItemsDict["Edit"]["Select All"], self.menuItemsDict["Edit"]["Render Markdown"], self.menuItemsDict["Search"]["Find"], self.menuItemsDict["Search"]["FindReplace"]}
+        self.menuItemsEditor = {self.menuItemsDict["File"]["Save"], self.menuItemsDict["Edit"]["Undo"], self.menuItemsDict["Edit"]["Redo"], self.menuItemsDict["Edit"]["Cut"], self.menuItemsDict["Edit"]["Copy"], self.menuItemsDict["Edit"]["Paste"], self.menuItemsDict["Edit"]["Select All"], self.menuItemsDict["Edit"]["Insert Media"], self.menuItemsDict["Edit"]["Render Markdown"], self.menuItemsDict["Search"]["Find"], self.menuItemsDict["Search"]["FindReplace"]}
         self.menuItemsDict["File"]["New..."].connect("activate", self.on_toolbutton_new_clicked)
         self.menuItemsDict["File"]["Save"].connect("activate", self.on_toolbutton_save_clicked)
         self.menuItemsDict["File"]["Exit"].connect("activate", self.customQuit)
@@ -100,6 +103,7 @@ class TechneNotes(Gtk.Window):
         self.menuItemsDict["Edit"]["Cut"].connect("activate", self.on_toolbutton_cut_clicked)
         self.menuItemsDict["Edit"]["Copy"].connect("activate", self.on_toolbutton_copy_clicked)
         self.menuItemsDict["Edit"]["Paste"].connect("activate", self.on_toolbutton_paste_clicked)
+        self.menuItemsDict["Edit"]["Insert Media"].connect("activate", self.on_toolbutton_insert_media_clicked)
         self.menuItemsDict["Edit"]["Select All"].connect("activate", self.on_toolbutton_select_all_clicked)
         self.menuItemsDict["Edit"]["Render Markdown"].connect("activate", self.on_toolbutton_render_markdown_clicked)
         self.menuItemsDict["Edit"]["Delete"].connect("activate", self.on_toolbutton_delete_clicked)
@@ -1602,6 +1606,158 @@ class TechneNotes(Gtk.Window):
             pass
 
         dialog.destroy()
+
+    def on_toolbutton_insert_media_clicked(self, widget):
+        dialog = dialogInsertMedia.DialogInsertMedia(self)
+        response = dialog.run()
+
+        if response == Gtk.ResponseType.OK:
+            selectedMediaOption = dialog.getSelectedMediaOption()
+            # mediaCheckboxValue (true/false) defines whether thumbnail+gallery should be automatically added
+            mediaCheckboxValue = dialog.getMediaCheckboxValue()
+            # TODO Modify this section to add the possibility of using a custom asset dir (selected inside the dialog)
+            # customAssetsFolderPath = dialog.getCustomAssetFolderPath()
+            assetsFolderPathSetting = self.settings.get_string("assets-folder-path")
+            # customAssetsFolderPath is an absolute path
+            customAssetsFolderPath = assetsFolderPathSetting
+            if len(customAssetsFolderPath) > len(assetsFolderPathSetting)+1 and customAssetsFolderPath[0:len(assetsFolderPathSetting)] == assetsFolderPathSetting:
+                # customAssetsFolderPath is a subdir of assetsFolderPathSetting (and is different from assetsFolderPathSetting + "/")
+                absoluteAssetsFolderPath = customAssetsFolderPath
+                relativeAssetsFolderPath = customAssetsFolderPath[len(assetsFolderPathSetting)+1:]
+            else:
+                absoluteAssetsFolderPath = assetsFolderPathSetting
+                relativeAssetsFolderPath = ''
+
+            if selectedMediaOption == 1:
+                # Call method to save image (+ thumbnail). Output is tuple (imgFileName, tbImgFileName, imgFilePathAbs, tbImgFilePathAbs, imgFilePathRel, tbImgFilePathRel)
+                genImgData = self.save_clipboard_img_to_file(mediaCheckboxValue, absoluteAssetsFolderPath, relativeAssetsFolderPath)
+                if genImgData:
+                    # Generate markdown string
+                    imgFilePathRel = genImgData[4]
+                    tbImgFilePathRel = genImgData[5]
+                    if mediaCheckboxValue:
+                        markdownString = "[![](" + tbImgFilePathRel + ")](" + imgFilePathRel + "){: .gallery}"
+                    else:
+                        markdownString = "![](" + imgFilePathRel + ")"
+                    # Insert new markdown in sourceView
+                    sourceviewBuffer = self.currentTab.sourceview.get_buffer()
+                    sourceviewBuffer.insert_at_cursor(markdownString, len(markdownString))
+
+            elif selectedMediaOption == 2:
+                # Retrieve list of selected images (as absolute filePaths)
+                mediaFilesName = dialog.getMediaFilesname()
+                for imgPath in mediaFilesName:
+                    # If the source img is not already located in a subdir of the assets folder, create a copy of the file in the desired subdir of the assets folder.
+                    if imgPath[:len(assetsFolderPathSetting)] != assetsFolderPathSetting:
+                        # Generate unique filenames and filepaths for img (and thumbnail, if needed).
+                        # Method output is tuple (imgFileName, tbImgFileName, imgFilePathAbs, tbImgFilePathAbs, imgFilePathRel, tbImgFilePathRel).
+                        genImgData = self.generate_unique_img_filenames_filepaths(absoluteAssetsFolderPath, relativeAssetsFolderPath)
+                        imgFilePathAbs = genImgData[2]
+                        # Copy file
+                        shutil.copy(imgPath, imgFilePathAbs)
+                        tbImgFilePathAbs = genImgData[3]
+                        imgFilePathRel = genImgData[4]
+                        tbImgFilePathRel = genImgData[5]
+                    else:
+                        # ImgPath is already in the assets folder: keep the original filename and create a thumbnail name.
+                        imgFilePathAbs = imgPath
+                        head, tail = os.path.split(imgFilePathAbs)
+                        # Absolute path of the image file directory (without trailing /)
+                        imgFileDirPathAbs = head
+                        # fileName with extension
+                        imgFileName = tail
+                        # fileExtension includes the dot (e.g. ".png")
+                        fileExtension = Path(imgFileName).suffix
+                        tbImgFileName = imgFileName[:-len(fileExtension)] + "_tb" + fileExtension
+                        tbImgFilePathAbs = imgFileDirPathAbs + "/" + tbImgFileName
+                        # Obtain relative folder path (without trailing /)
+                        if len(imgFileDirPathAbs) > len(assetsFolderPathSetting)+1:
+                            relativeFolderPath = imgFileDirPathAbs[len(assetsFolderPathSetting)+1:]
+                            imgFilePathRel = relativeFolderPath + "/" + imgFileName
+                            tbImgFilePathRel = relativeFolderPath + "/" + tbImgFileName
+                        else:
+                            # relativeFolderPath = ''
+                            imgFilePathRel = imgFileName
+                            tbImgFilePathRel = tbImgFileName
+
+
+                    # Generate thumbnail img file (if needed)
+                    if mediaCheckboxValue:
+                        self.save_img_thumbnail(imgFilePathAbs, tbImgFilePathAbs)
+
+                    # Generate markdown syntax
+                    # TODO Add new line after each entry
+                    if mediaCheckboxValue:
+                        markdownString = "[![](" + tbImgFilePathRel + ")](" + imgFilePathRel + "){: .gallery}"
+                    else:
+                        markdownString = "![](" + imgFilePathRel + ")"
+
+                    # Insert new markdown in sourceView
+                    sourceviewBuffer = self.currentTab.sourceview.get_buffer()
+                    sourceviewBuffer.insert_at_cursor(markdownString, len(markdownString))
+
+            else:
+                pass
+
+        elif response == Gtk.ResponseType.CANCEL:
+            pass
+
+        dialog.destroy()
+
+    def save_clipboard_img_to_file(self, mediaCheckboxValue, absoluteAssetsFolderPath, relativeAssetsFolderPath):
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+        imgFile = clipboard.wait_for_image()
+        if imgFile:
+            # Generate unique filename. Output is tuple (imgFileName, tbImgFileName, imgFilePathAbs, tbImgFilePathAbs, imgFilePathRel, tbImgFilePathRel)
+            genImgData = self.generate_unique_img_filenames_filepaths(absoluteAssetsFolderPath, relativeAssetsFolderPath)
+            imgFilePathAbs = genImgData[2]
+            # Save img to local file
+            imgFile.savev(imgFilePathAbs, "png", [], [])
+            if mediaCheckboxValue:
+                # Create img thumbnail
+                tbImgFilePathAbs = genImgData[3]
+                self.save_img_thumbnail(imgFilePathAbs, tbImgFilePathAbs)
+
+        else:
+            genImgData = None
+
+        return genImgData
+
+    def generate_unique_img_filenames_filepaths(self, absoluteAssetsFolderPath, relativeAssetsFolderPath):
+        # Generate unique filenames for image and thumbnail
+        datetimePrefix = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        randomFilename = str(uuid.uuid4())[:8]
+        imgExtension = "png"
+        imgFileName = datetimePrefix + "_" + randomFilename + "." + imgExtension
+        tbImgFileName = datetimePrefix + "_" + randomFilename + "_tb" + "." + imgExtension
+        # Generate absolute filepaths for image and thumbnail
+        imgFilePathAbs = absoluteAssetsFolderPath + "/" + imgFileName
+        tbImgFilePathAbs = absoluteAssetsFolderPath + "/" + tbImgFileName
+        # Generate relative filepaths for image and thumbnail
+        if relativeAssetsFolderPath != '':
+            imgFilePathRel = relativeAssetsFolderPath + "/" + imgFileName
+            tbImgFilePathRel = relativeAssetsFolderPath + "/" + tbImgFileName
+        else:
+            imgFilePathRel = imgFileName
+            tbImgFilePathRel = tbImgFileName
+
+        return (imgFileName, tbImgFileName, imgFilePathAbs, tbImgFilePathAbs, imgFilePathRel, tbImgFilePathRel)
+
+    def save_img_thumbnail(self, imgFilePathAbs, tbImgFilePathAbs):
+        img = Image.open(imgFilePathAbs)
+        imgW = float(img.size[0])
+        imgH = float(img.size[1])
+        if imgW > imgH:
+            # Proportionally resize to a width of 350 px (arbitrary value)
+            newImgW = 350
+        else:
+            # Proportionally resize to a width of 250 px (arbitrary value)
+            newImgW = 250
+
+        wpercent = (newImgW / imgW)
+        newImgH = int(imgH * float(wpercent))
+        newImg = img.resize((newImgW, newImgH), Image.ANTIALIAS)
+        newImg.save(tbImgFilePathAbs)
 
     def on_sourceview_buffer_changed(self, textBuffer):
         if not self.currentTab.pendingUpdatesFlag:

@@ -23,7 +23,8 @@ menuItemsDict = {
     "Delete":None,
     "Select All":None,
     "Preferences":None,
-    "Render Markdown":None
+    "Render Markdown":None,
+    "Insert Media":None
     },
 "Search":{
     "Find...":None,
@@ -122,6 +123,11 @@ def setupMenuBar(menuBar, agr):
     edit_preferences.add_accelerator("activate", agr, key, mod, Gtk.AccelFlags.VISIBLE)
     menuItemsDict["Edit"]["Preferences"] = edit_preferences
 
+    edit_insert_media = Gtk.MenuItem("Insert Media")
+    key, mod = Gtk.accelerator_parse("<Control>M")
+    edit_insert_media.add_accelerator("activate", agr, key, mod, Gtk.AccelFlags.VISIBLE)
+    menuItemsDict["Edit"]["Insert Media"] = edit_insert_media
+
     search_find = Gtk.MenuItem("Find...")
     key, mod = Gtk.accelerator_parse("<Control>F")
     search_find.add_accelerator("activate", agr, key, mod, Gtk.AccelFlags.VISIBLE)
@@ -162,6 +168,7 @@ def setupMenuBar(menuBar, agr):
     edit_menu.append(edit_cut)
     edit_menu.append(edit_copy)
     edit_menu.append(edit_paste)
+    edit_menu.append(edit_insert_media)
     edit_menu.append(edit_render_markdown)
     edit_menu.append(Gtk.SeparatorMenuItem())
     edit_menu.append(edit_delete)        
